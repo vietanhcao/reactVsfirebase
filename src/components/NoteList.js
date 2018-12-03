@@ -21,15 +21,26 @@ export default class NoteList extends Component {
             this.setState({ dataFirebase: array });
         })
     }
-    
-  render() {
-      console.log(this.state.dataFirebase);
-    return (
-        <div className="col">
-            <div id="notelist" role="tablist" aria-multiselectable="true">
-                <NoteItem />
+    getData(){     
+        if(this.state.dataFirebase.length !== 0){
+            return this.state.dataFirebase.map((value, index) => <NoteItem key={index}
+                        i={index}
+                        id={value.id}
+                        noteTitle={value.noteTitle}
+                        noteTitleContent={value.noteTitleContent} />
+            )
+        }
+    }
+    render() {
+        console.log(this.state.dataFirebase);
+        return (
+            <div className="col">
+                <div id="notelist" role="tablist" aria-multiselectable="true">
+                    {
+                        this.getData.call(this)
+                    }
+                </div>
             </div>
-        </div>
-    )
-  }
+        )
+    }
 }
