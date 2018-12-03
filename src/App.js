@@ -11,6 +11,10 @@ class App extends Component {
       content: "noi dung ghi chu so 3"
     })
   }
+  removeData(id){
+    let dataConnect = firebase.database().ref('dataForNote');
+    dataConnect.child(id).remove();
+  }
   render() {
     console.log(firebaseConnect);
     
@@ -31,6 +35,7 @@ class App extends Component {
           </a>
         </header>
         <button onClick={this.pushData.bind(this)} > Click de thêm mới </button>
+        <button onClick={this.removeData.bind(this,'-LSlm-HSyPtIneeeqi_q')} > Click de xoa du lieu  </button>
       </div>
     );
   }
