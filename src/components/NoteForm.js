@@ -29,8 +29,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
     }
     addData() {
         let obj = { ...this.state };
-        // this.props.addData(obj);
-        this.props.addDataStore(JSON.stringify(obj));
+        this.props.addDataStore(obj);
     }
     render() {
         return (
