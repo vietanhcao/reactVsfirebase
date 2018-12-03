@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { firebaseConnect } from './firebaseConnect';
+import * as firebase from 'firebase';
 class App extends Component {
+  pushData(){
+    let dataConnect = firebase.database().ref('dataForNote');
+    dataConnect.push({
+      title: "ghi chu so 3",
+      content: "noi dung ghi chu so 3"
+    })
+  }
   render() {
     console.log(firebaseConnect);
     
@@ -22,6 +30,7 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <button onClick={this.pushData.bind(this)} > Click de thêm mới </button>
       </div>
     );
   }
