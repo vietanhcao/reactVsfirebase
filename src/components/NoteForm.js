@@ -7,8 +7,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        addDataStore: () => {
-            dispatch({ type: "AddData" })
+        addDataStore: (nhanvao) => {
+            dispatch({ type: "AddData", nhanvao })
         }
     }
 }
@@ -29,10 +29,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
     }
     addData() {
         let obj = { ...this.state };
-        this.props.addData(obj);
+        // this.props.addData(obj);
+        this.props.addDataStore(JSON.stringify(obj));
     }
     render() {
-        this.props.addDataStore();
         return (
             <div className="col-sm-4">
                 <h3>Sửa nội dung note</h3>

@@ -3,10 +3,10 @@ const redux = require('redux');
 const initialState = {
     test:"test"
 }
-const store = redux.createStore((state = initialState, { type, payload }) => {
+const store = redux.createStore((state = initialState, { type, nhanvao }) => {
     switch (type) {
         case 'AddData':
-            console.log('ok');
+            console.log('ok' + nhanvao);
             return state
         default:
             return state
