@@ -11,7 +11,13 @@ var config = {
 };
 
 export const firebaseConnect = firebase.initializeApp(config);
-let data = firebase.database().ref('dataForNote');
-    data.once('value').then((snapshot) => {
-        console.log(snapshot.val());      
+let data = firebase.database().ref('dataForNote/note2');
+    // data.once('value').then((snapshot) => {
+    //     console.log(snapshot.val());      
+    // })
+
+    data.set({
+        id:1,
+        title: "ghi chu 20/12",
+        content: "Demo content for note"
     })
