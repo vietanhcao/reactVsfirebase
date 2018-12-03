@@ -9,5 +9,5 @@ var config = {
     storageBucket: "listnotereact.appspot.com",
     messagingSenderId: "83226181080"
 };
-
-export const firebaseConnect = firebase.initializeApp(config);
+firebase.initializeApp(config);
+export const firebaseConnect = firebase.database().ref('dataForNote/');
