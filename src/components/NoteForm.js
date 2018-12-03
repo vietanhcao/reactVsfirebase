@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
-
-export default class NoteForm extends Component {
+import { connect } from 'react-redux';
+const mapStateToProps = (state, ownProps) => {
+    return {
+        test: state.test
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addDataStore: () => {
+            dispatch({ type: "AddData" })
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -8,18 +20,19 @@ export default class NoteForm extends Component {
             noteTitleContent: ""
         }
     }
-    isChange(event){
+    isChange(event) {
         const name = event.target.name;
         const value = event.target.value;
         this.setState({
             [name]: value
-        })        
+        })
     }
-    addData(){
-        let obj = {...this.state};
+    addData() {
+        let obj = { ...this.state };
         this.props.addData(obj);
     }
     render() {
+        this.props.addDataStore();
         return (
             <div className="col-sm-4">
                 <h3>Sửa nội dung note</h3>
@@ -40,4 +53,5 @@ export default class NoteForm extends Component {
 
         )
     }
-}
+})
+
