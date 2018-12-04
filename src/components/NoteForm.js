@@ -9,6 +9,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         addDataStore: (nhanvao) => {
             dispatch({ type: "AddData", nhanvao })
+        },
+        Edit: (getitem) => {
+            dispatch({ type: "Edit", getitem })
         }
     }
 }
@@ -16,8 +19,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
     constructor(props) {
         super(props);
         this.state = {
-            noteTitle: "",
-            noteTitleContent: ""
+            noteTitle: this.props.item.noteTitle || "",
+            noteTitleContent: this.props.item.noteTitleContent || ""
         }
     }
     isChange(event) {
@@ -28,13 +31,22 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
         })
     }
     addData() {
-        let obj = { ...this.state };
-        this.props.addDataStore(obj);
+        if(this.props.item){
+            let editObject = {...this.props.item , 
+                noteTitle: this.state.noteTitle,
+                noteTitleContent: this.state.noteTitleContent
+            };          
+            this.props.Edit(editObject);            
+        }else{
+            let obj = { ...this.state };
+            this.props.addDataStore(obj);
+        }
     }
-    render() {     
+    render() {        
+        console.log(this.props.item);             
         return (
             <div className="col-sm-4">
-                <h3>Sửa nội dung note</h3>
+                <h3 className="text-info">Sửa nội dung note</h3>
                 <form action="">
                     <div className="form-group">
                         <label htmlFor="noteTitle">Tiêu đề note</label>

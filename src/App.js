@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-// import * as firebase from 'firebase';
 import Nav from './components/Nav';
 import NoteList from './components/NoteList';
 import NoteForm from './components/NoteForm';
