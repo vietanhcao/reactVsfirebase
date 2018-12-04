@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         Edit: (getitem) => {
             dispatch({ type: "Edit", getitem })
+        },
+        changeEditStatus: () => {
+            dispatch({ type: "Change_Edit_Status"})
         }
     }
 }
@@ -36,7 +39,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
                 noteTitle: this.state.noteTitle,
                 noteTitleContent: this.state.noteTitleContent
             };          
-            this.props.Edit(editObject);            
+            this.props.Edit(editObject);   
+            this.props.changeEditStatus();
+
         }else{
             let obj = { ...this.state };
             this.props.addDataStore(obj);

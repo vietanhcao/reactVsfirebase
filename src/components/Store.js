@@ -15,7 +15,10 @@ const store = redux.createStore((state = initialState, { type, nhanvao, editObj 
         case 'Get_edit_data':              
             return { ...state, editItem: editObj }
         case 'Edit':  
-            console.log(getitem);
+            firebaseConnect.child(getitem.id).update({
+                noteTitle: getitem.noteTitle,
+                noteTitleContent: getitem.noteTitleContent
+            })
             return { ...state, editItem: {} }
         default:
             return state
