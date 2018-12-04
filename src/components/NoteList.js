@@ -32,7 +32,6 @@ export default class NoteList extends Component {
         }
     }
     render() {
-        console.log(this.state.dataFirebase);
         return (
             <div className="col">
                 <div id="notelist" role="tablist" aria-multiselectable="true">
