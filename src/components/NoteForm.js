@@ -50,8 +50,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
     render() {        
         console.log(this.props.item);             
         return (
-            <div className="col-sm-4">
-                <h3 className="text-info">Sửa nội dung note</h3>
+            <div className="col-sm-3">
+                <h3 className="text-secondary">Sửa nội dung note</h3>
                 <form action="">
                     <div className="form-group">
                         <label htmlFor="noteTitle">Tiêu đề note</label>
@@ -63,7 +63,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
                         <textarea type="text" onChange={this.isChange.bind(this)} className="form-control" name="noteTitleContent" id="noteTitleContent" aria-describedby="helpIdNotetitleContent" placeholder="Content note" defaultValue={this.props.item.noteTitleContent} />
                         <small id="helpIdNotetitleContent" className="form-text text-muted">Điền Content vào đây</small>
                     </div>
-                    <button type="reset" onClick={this.addData.bind(this)} className="btn btn-primary btn-block">Save</button>
+                    <div className="form-group">
+                        <button type="reset" onClick={this.addData.bind(this)} className="btn btn-primary btn-block">Save</button>
+                        <button type="reset" onClick={this.props.changeEditStatus} className="btn btn-danger btn-block">Đóng</button>
+                    </div>
                 </form>
             </div>
 

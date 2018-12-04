@@ -3,7 +3,8 @@ const redux = require('redux');
 const initialState = {
     test:"test",
     isEdit : false,
-    editItem: {}
+    editItem: {},
+    isAdd: false
 }
 const store = redux.createStore((state = initialState, { type, nhanvao, editObj , getitem}) => {
     switch (type) {
@@ -12,6 +13,8 @@ const store = redux.createStore((state = initialState, { type, nhanvao, editObj 
             return state
         case 'Change_Edit_Status':       
             return { ...state, isEdit: !state.isEdit}
+        case 'Change_Add_Status':       
+            return { ...state, isAdd: !state.isAdd}
         case 'Get_edit_data':              
             return { ...state, editItem: editObj }
         case 'Edit':  

@@ -1,11 +1,27 @@
 import React, { Component } from 'react'
 import { firebaseConnect } from '../firebaseConnect';
 import NoteItem from './NoteItem';
-export default class NoteList extends Component {
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        prop: state.prop
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        changeAdd: () => {
+            dispatch({ type: "Change_Add_Status"})
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(class NoteList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataFirebase: []
+            dataFirebase: [],
+            trangthai: true
         }
     }
     componentWillMount = () => {
@@ -21,26 +37,37 @@ export default class NoteList extends Component {
             this.setState({ dataFirebase: array });
         })
     }
-    getData(){     
-        if(this.state.dataFirebase.length !== 0){
-            return this.state.dataFirebase.map((value, index) => <NoteItem key={index}
-                        i={index}
-                        id={value.id}
-                        note={value}
-                        noteTitle={value.noteTitle}
-                        noteTitleContent={value.noteTitleContent} />
-            )
+    isChange() {
+        this.setState({
+            trangthai: !this.state.trangthai
+        });
+        this.props.changeAdd.call(this);
+    }
+
+    hienthinut() {
+        if (this.state.trangthai) {
+            return <button type="button" onClick={this.isChange.bind(this)} className="btn btn-info">Thêm</button>
+        } else {
+            return <button type="button" onClick={this.isChange.bind(this)} className="btn btn-warning">Đóng</button>
         }
     }
     render() {
         return (
             <div className="col">
+                {this.hienthinut.call(this)}
                 <div id="notelist" role="tablist" aria-multiselectable="true">
                     {
-                        this.getData.call(this)
+                        this.state.dataFirebase.map((value, index) => <NoteItem key={index}
+                            i={index}
+                            id={value.id}
+                            note={value}
+                            noteTitle={value.noteTitle}
+                            noteTitleContent={value.noteTitleContent} />)
                     }
                 </div>
             </div>
         )
     }
 }
+)
+ 
