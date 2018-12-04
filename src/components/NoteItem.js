@@ -13,6 +13,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(class NoteItem extends Component {
+    twoAction(){
+        this.props.changeEditStatus.call(this);
+        //truyen noi dung can sua len store
+        console.log(this.props.note);
+        
+    }
     render() {      
         return (
             <div className="card">
@@ -23,7 +29,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteItem exten
                         </a>
                     </h5>
                     <div className="d-flex align-items-center">
-                        <button type="button" onClick={this.props.changeEditStatus.bind(this)} className="btn btn-secondary">sửa</button>
+                        <button type="button" onClick={this.twoAction.bind(this)} className="btn btn-secondary">sửa</button>
                         <button type="button" className="btn btn-danger">xóa</button>
                     </div>
                 </div>
