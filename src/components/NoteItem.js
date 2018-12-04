@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state, ownProps) => {
     return {
         edistsatus: state.isEdit
+        
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         changeEditStatus: () => {
             dispatch({ type: 'Change_Edit_Status' });
+        },
+        postEditItem: (item) => {
+            dispatch({ type: 'Get_edit_data', editObj: item });
         }
     }
 }
@@ -16,8 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteItem exten
     twoAction(){
         this.props.changeEditStatus.call(this);
         //truyen noi dung can sua len store
-        console.log(this.props.note);
-        
+        this.props.postEditItem.call(this, this.props.note);
     }
     render() {      
         return (
