@@ -20,6 +20,9 @@ const store = redux.createStore((state = initialState, { type, nhanvao, editObj 
                 noteTitleContent: getitem.noteTitleContent
             })
             return { ...state, editItem: {} }
+        case 'DeleteItem':  
+            firebaseConnect.child(getitem.id).remove();
+            return state
         default:
             return state
     }

@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         postEditItem: (item) => {
             dispatch({ type: 'Get_edit_data', editObj: item });
+        },
+        postDeleteItem: (item) => {
+            dispatch({ type: 'DeleteItem', getitem: item });
         }
     }
 }
@@ -21,6 +24,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteItem exten
         this.props.changeEditStatus.call(this);
         //truyen noi dung can sua len store
         this.props.postEditItem.call(this, this.props.note);
+    }
+    getImformation(){
+        this.props.postDeleteItem.call(this, this.props.note);
+        
     }
     render() {      
         return (
@@ -33,7 +40,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteItem exten
                     </h5>
                     <div className="d-flex align-items-center">
                         <button type="button" onClick={this.twoAction.bind(this)} className="btn btn-secondary">sửa</button>
-                        <button type="button" className="btn btn-danger">xóa</button>
+                        <button type="button" onClick={this.getImformation.bind(this)} className="btn btn-danger">xóa</button>
                     </div>
                 </div>
                 <div id={"number" + this.props.i} className="collapse in" role="tabpanel" aria-labelledby="note1">
