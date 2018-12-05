@@ -52,7 +52,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
                         <textarea type="text" onChange={this.isChange.bind(this)} className="form-control" name="noteTitleContent" id="noteTitleContent" aria-describedby="helpIdNotetitleContent" placeholder="Content note" />
                         <small id="helpIdNotetitleContent" className="form-text text-muted">Điền Content vào đây</small>
                     </div>
-                    <button type="reset" onClick={this.addData.bind(this)} className="btn btn-primary btn-block">Save</button>
+                    <button type="reset" onClick={this.addData.bind(this)} className="btn btn-primary btn-block mb-2">Save</button>
                 </form>
             </div>
 

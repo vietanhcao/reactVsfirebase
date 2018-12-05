@@ -5,6 +5,7 @@ import NoteList from './components/NoteList';
 import NoteForm from './components/NoteForm';
 import { connect } from 'react-redux';
 import NoteFormadd from './components/NoteFormadd';
+import AlertInfor from './components/AlertInfor';
 class App extends Component {
   showForm(){
     if(this.props.isEdit){
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
+        <AlertInfor />
         <div className="container">
           <div className="row">
             {

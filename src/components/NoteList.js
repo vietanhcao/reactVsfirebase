@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        prop: state.prop
+        isAdd: state.isAdd
     }
 }
 
@@ -20,8 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteList exten
     constructor(props) {
         super(props);
         this.state = {
-            dataFirebase: [],
-            trangthai: true
+            dataFirebase: []
         }
     }
     componentWillMount = () => {
@@ -38,17 +37,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteList exten
         })
     }
     isChange() {
-        this.setState({
-            trangthai: !this.state.trangthai
-        });
         this.props.changeAdd.call(this);
     }
 
     hienthinut() {
-        if (this.state.trangthai) {
-            return <button type="button" onClick={this.isChange.bind(this)} className="btn btn-info">Thêm</button>
+        if (!this.props.isAdd) {
+            return <button type="button" onClick={this.isChange.bind(this)} className="btn btn-info mb-2">Thêm</button>
         } else {
-            return <button type="button" onClick={this.isChange.bind(this)} className="btn btn-warning">Đóng</button>
+            return <button type="button" onClick={this.isChange.bind(this)} className="btn btn-warning mb-2">Đóng</button>
         }
     }
     render() {
@@ -70,4 +66,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteList exten
     }
 }
 )
- 
