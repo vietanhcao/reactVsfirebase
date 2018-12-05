@@ -4,7 +4,8 @@ const initialState = {
     test:"test",
     isEdit : false,
     editItem: {},
-    isAdd: false
+    isAdd: false,
+    alertShow: false
 }
 const store = redux.createStore((state = initialState, { type, nhanvao, editObj , getitem}) => {
     switch (type) {
