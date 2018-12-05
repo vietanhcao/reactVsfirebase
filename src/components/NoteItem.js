@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         postDeleteItem: (item) => {
             dispatch({ type: 'DeleteItem', getitem: item });
+        },
+        changeAlterOn: (pushcontent) => {
+            dispatch({ type: "Change_Alter_On", pushcontent })
         }
     }
 }
@@ -27,6 +30,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteItem exten
     }
     getImformation(){
         this.props.postDeleteItem.call(this, this.props.note);
+
+        this.props.changeAlterOn("xóa thành công")
         
     }
     render() {      

@@ -5,9 +5,10 @@ const initialState = {
     isEdit : false,
     editItem: {},
     isAdd: false,
-    alertShow: false
+    alertShow: false,
+    alertContent: ""
 }
-const store = redux.createStore((state = initialState, { type, nhanvao, editObj , getitem}) => {
+const store = redux.createStore((state = initialState, { type, nhanvao, editObj, getitem, pushcontent}) => {
     switch (type) {
         case 'AddData':
         firebaseConnect.push(nhanvao);
@@ -28,7 +29,7 @@ const store = redux.createStore((state = initialState, { type, nhanvao, editObj 
             firebaseConnect.child(getitem.id).remove();
             return state
         case 'Change_Alter_On':
-            return { ...state, alertShow: true }
+            return { ...state, alertShow: true, alertContent: pushcontent }
         case 'Change_Alter_Off':
             return { ...state, alertShow: false }
         default:

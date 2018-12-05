@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         changeAdd: () => {
             dispatch({ type: "Change_Add_Status" })
         },
-        changeAlterOn: () => {
-            dispatch({ type: "Change_Alter_On" })
+        changeAlterOn: (pushcontent) => {
+            dispatch({ type: "Change_Alter_On", pushcontent })
         },
         changeAlterOff: () => {
             dispatch({ type: "Change_Alter_Off" })
@@ -40,7 +40,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
         let obj = { ...this.state };
         this.props.addDataStore(obj);
         this.props.changeAdd();
-        this.props.changeAlterOn();
+        this.props.changeAlterOn("đã thêm thành công");
         
     }
     render() {
@@ -59,7 +59,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
                         <textarea type="text" onChange={this.isChange.bind(this)} className="form-control" name="noteTitleContent" id="noteTitleContent" aria-describedby="helpIdNotetitleContent" placeholder="Content note" />
                         <small id="helpIdNotetitleContent" className="form-text text-muted">Điền Content vào đây</small>
                     </div>
-                    <button type="reset" onClick={this.addData.bind(this)} className="btn btn-primary btn-block mb-2">Save</button>
+                    <button type="reset" onClick={this.addData.bind(this)} className="btn btn-primary btn-block mb-2">Add</button>
                 </form>
             </div>
 

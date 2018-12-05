@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    alertShow: state.alertShow
+    alertShow: state.alertShow,
+    alertContent: state.alertContent
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -20,13 +21,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(class AlertInfor ext
   handleDismiss(){
     this.props.changeAlterOff();
   }
-  render() {
+  render() {  
     if(!this.props.alertShow){
       return false;
     }
     return (
       <AlertContainer>
-        <Alert type="info" onDismiss={this.handleDismiss.bind(this)} timeout={2000} >Hello, world</Alert>
+        <Alert type="info" onDismiss={this.handleDismiss.bind(this)} timeout={1000} > 
+          {this.props.alertContent} </Alert>
       </AlertContainer>
     )
   }

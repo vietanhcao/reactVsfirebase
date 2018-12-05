@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         changeEditStatus: () => {
             dispatch({ type: "Change_Edit_Status" })
         },
-        changeAlterOn: () => {
-            dispatch({ type: "Change_Alter_On"})
+        changeAlterOn: (pushcontent) => {
+            dispatch({ type: "Change_Alter_On", pushcontent})
         },
         changeAlterOff: () => {
             dispatch({ type: "Change_Alter_Off"})
@@ -47,7 +47,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
         };          
         this.props.Edit(editObject);   
         this.props.changeEditStatus();
-        this.props.changeAlterOn();
+        this.props.changeAlterOn("Đã lưu thành công");
 
 
 
