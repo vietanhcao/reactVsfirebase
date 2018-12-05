@@ -14,8 +14,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch({ type: "Edit", getitem })
         },
         changeEditStatus: () => {
-            dispatch({ type: "Change_Edit_Status"})
-        }
+            dispatch({ type: "Change_Edit_Status" })
+        },
+        changeAlterOn: () => {
+            dispatch({ type: "Change_Alter_On"})
+        },
+        changeAlterOff: () => {
+            dispatch({ type: "Change_Alter_Off"})
+        } 
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm extends Component {
@@ -34,18 +40,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
         })
     }
     addData() {
-        if(this.props.item){
-            let editObject = {...this.props.item , 
-                noteTitle: this.state.noteTitle,
-                noteTitleContent: this.state.noteTitleContent
-            };          
-            this.props.Edit(editObject);   
-            this.props.changeEditStatus();
+    
+        let editObject = {...this.props.item , 
+            noteTitle: this.state.noteTitle,
+            noteTitleContent: this.state.noteTitleContent
+        };          
+        this.props.Edit(editObject);   
+        this.props.changeEditStatus();
+        this.props.changeAlterOn();
 
-        }else{
-            let obj = { ...this.state };
-            this.props.addDataStore(obj);
-        }
+
+
+        
     }
     render() {        
         console.log(this.props.item);             

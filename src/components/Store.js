@@ -15,7 +15,7 @@ const store = redux.createStore((state = initialState, { type, nhanvao, editObj 
         case 'Change_Edit_Status':       
             return { ...state, isEdit: !state.isEdit}
         case 'Change_Add_Status':       
-            return { ...state, isAdd: !state.isAdd}
+            return { ...state, isAdd: !state.isAdd}  
         case 'Get_edit_data':              
             return { ...state, editItem: editObj }
         case 'Edit':  
@@ -27,6 +27,10 @@ const store = redux.createStore((state = initialState, { type, nhanvao, editObj 
         case 'DeleteItem':  
             firebaseConnect.child(getitem.id).remove();
             return state
+        case 'Change_Alter_On':
+            return { ...state, alertShow: true }
+        case 'Change_Alter_Off':
+            return { ...state, alertShow: false }
         default:
             return state
     }

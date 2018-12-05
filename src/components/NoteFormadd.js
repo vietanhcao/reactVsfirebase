@@ -12,6 +12,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         changeAdd: () => {
             dispatch({ type: "Change_Add_Status" })
+        },
+        changeAlterOn: () => {
+            dispatch({ type: "Change_Alter_On" })
+        },
+        changeAlterOff: () => {
+            dispatch({ type: "Change_Alter_Off" })
         }
     }
 }
@@ -34,6 +40,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class NoteForm exten
         let obj = { ...this.state };
         this.props.addDataStore(obj);
         this.props.changeAdd();
+        this.props.changeAlterOn();
         
     }
     render() {
