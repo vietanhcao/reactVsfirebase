@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state, ownProps) => {
   return {
     alertShow: state.alertShow,
-    alertContent: state.alertContent
+    alertContent: state.alertContent,
+    alertType: state.alertType
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -26,8 +27,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class AlertInfor ext
       return false;
     }
     return (
-      <AlertContainer>
-        <Alert type="info" onDismiss={this.handleDismiss.bind(this)} timeout={1000} > 
+      <AlertContainer position="bottom-right">
+        <Alert  type={this.props.alertType} onDismiss={this.handleDismiss.bind(this)} timeout={1000} > 
           {this.props.alertContent} </Alert>
       </AlertContainer>
     )
